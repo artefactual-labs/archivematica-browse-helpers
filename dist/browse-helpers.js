@@ -1,5 +1,7 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -14,7 +16,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function decode_browse_response(response) {
   var new_response = {};
-  Object.assign(new_response, response);
+  _extends(new_response, response);
 
   ['entries', 'directories'].forEach(function (key) {
     new_response[key] = response[key].map(_base64Helpers2.default.decode);
