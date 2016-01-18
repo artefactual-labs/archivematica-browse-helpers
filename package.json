@@ -1,0 +1,22 @@
+{
+  "name": "archivematica-browse-helpers",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Directory browse helpers used by Archivematica",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artefactual-labs/archivematica-browse-helpers.git"
+  },
+  "license": "AGPL-3.0",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "base64-helpers": "git+https://github.com/artefactual-labs/base64-helpers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/artefactual-labs/archivematica-browse-helpers/issues"
+  },
+  "homepage": "https://github.com/artefactual-labs/archivematica-browse-helpers#readme",
+  "main": "browse-helpers.js",
+  "author": ""
+}
