@@ -15,7 +15,7 @@ export function decode_browse_response(response) {
   return new_response;
 };
 
-export function format_entries(data, parent_path) {
+export function format_entries(data, parent_path, parent = null) {
   return data.entries.map(element => {
     let child = {
       title: element,
@@ -23,6 +23,10 @@ export function format_entries(data, parent_path) {
       display: true,
       properties: data.properties[element],
     };
+
+    if (parent !== null) {
+      child.parent = parent;
+    }
 
     if (data.directories.indexOf(element) > -1) {
       // directory

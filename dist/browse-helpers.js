@@ -51,6 +51,8 @@ function decode_browse_response(response) {
 };
 
 function format_entries(data, parent_path) {
+  var parent = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+
   return data.entries.map(function (element) {
     var child = {
       title: element,
@@ -58,6 +60,10 @@ function format_entries(data, parent_path) {
       display: true,
       properties: data.properties[element]
     };
+
+    if (parent !== null) {
+      child.parent = parent;
+    }
 
     if (data.directories.indexOf(element) > -1) {
       // directory
