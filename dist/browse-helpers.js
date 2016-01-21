@@ -56,7 +56,7 @@ function format_entries(data, parent_path) {
   return data.entries.map(function (element) {
     var child = {
       title: element,
-      path: parent_path + '/' + element,
+      path: parent_path ? parent_path + '/' + element : element,
       display: true,
       properties: data.properties[element]
     };

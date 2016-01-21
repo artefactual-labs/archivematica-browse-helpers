@@ -19,7 +19,7 @@ export function format_entries(data, parent_path, parent = null) {
   return data.entries.map(element => {
     let child = {
       title: element,
-      path: parent_path + '/' + element,
+      path: parent_path ? parent_path + '/' + element : element,
       display: true,
       properties: data.properties[element],
     };
