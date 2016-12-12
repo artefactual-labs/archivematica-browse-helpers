@@ -1,10 +1,11 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 exports.decode_browse_response = decode_browse_response;
 exports.format_entries = format_entries;
 
@@ -51,9 +52,12 @@ function decode_browse_response(response) {
 };
 
 function format_entries(data, parent_path) {
-  var parent = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+  var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
-  return data.entries.map(function (element) {
+  var directories = [];
+  var files = [];
+  for (var index = 0; index < data.entries.length; ++index) {
+    var element = data.entries[index];
     var child = {
       title: element,
       path: parent_path ? parent_path + '/' + element : element,
@@ -71,12 +75,13 @@ function format_entries(data, parent_path) {
       child.children = [];
       child.children_fetched = false;
       child.directory = true;
+      directories.push(child);
     } else {
       // file
       child.has_children = false;
       child.directory = false;
+      files.push(child);
     }
-
-    return child;
-  });
+  }
+  return directories.concat(files);
 }

@@ -16,7 +16,10 @@ export function decode_browse_response(response) {
 };
 
 export function format_entries(data, parent_path, parent = null) {
-  return data.entries.map(element => {
+  let directories = [];
+  let files = [];
+  for (let index = 0; index < data.entries.length; ++index) {
+    let element = data.entries[index];
     let child = {
       title: element,
       path: parent_path ? parent_path + '/' + element : element,
@@ -34,12 +37,13 @@ export function format_entries(data, parent_path, parent = null) {
       child.children = [];
       child.children_fetched = false;
       child.directory = true;
+      directories.push(child);
     } else {
       // file
       child.has_children = false;
       child.directory = false;
+      files.push(child);
     }
-
-    return child;
-  });
+  }
+  return directories.concat(files);
 }
